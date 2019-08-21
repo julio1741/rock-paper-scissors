@@ -54,4 +54,10 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+
+  namespace :api do
+      namespace :v1 do
+      resources :players
+    end
+  end
 end
