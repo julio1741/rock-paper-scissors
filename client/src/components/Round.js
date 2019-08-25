@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import axios from 'axios';
 
 class Round extends React.Component {
   constructor(props) {
@@ -9,9 +10,22 @@ class Round extends React.Component {
         player1: props.player1 ? props.player1 : 'fff',
         player2: "Player two",
         players: [],
-        gameStarted:false
+        gameStarted:false,
+        moves: []
     };
   }
+
+    componentDidMount() {
+        axios.get('/api/v1/moves')
+        .then(response => {
+            console.log(response)
+            this.setState({
+              
+                moves: response.data.moves
+            })
+        })
+        .catch(error => console.log(error))
+    }
 
   render() {
     return (
@@ -21,11 +35,12 @@ class Round extends React.Component {
 			</div>
 			<h2>{this.state.player1}</h2>
 	        <div className="input-item">
-		        <select className="select"
-		            value=""
-		            >
-		            <option value="date">Date</option>
-		            <option value="amount">Amount</option>
+		        <select className="select" >
+
+               {this.state.moves.map( move => {
+                    return (<option key={move} value="{move}">{move}</option>)
+                })}
+
 		        </select>
 		    </div>
 	    </div>

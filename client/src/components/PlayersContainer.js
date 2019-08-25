@@ -78,10 +78,6 @@ class PlayersContainer extends Component {
                     Start
                     </Link>
                 </div>                
-                
-                {this.state.players.map( player => {
-                    return (<Player player={player} key={player.id} />)
-                })}
             </div>
         )
     }
