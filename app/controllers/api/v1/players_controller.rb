@@ -1,6 +1,8 @@
 module Api::V1
   class PlayersController < ApplicationController
     before_action :set_player, only: [:show, :edit, :update, :destroy]
+    protect_from_forgery with: :null_session
+    include PlayersHelper
 
     # GET /players
     # GET /players.json
@@ -62,6 +64,26 @@ module Api::V1
       end
     end
 
+    # POST /winner
+    # POST /winner.json
+    def winner
+      player1 = winner_params["player1"]
+      player2 = winner_params["player2"]
+      move1 = winner_params["move1"]
+      move2 = winner_params["move2"]
+      winner = choose_winner player1, player2, move1, move2
+      render json: {winner: winner}, status: :ok
+    end
+
+    # POST /victory
+    # POST /victory.json
+    def victory
+      player = Player.find_by_username(victory_params[:username])
+      player.wins = player.wins + 1
+      player.save!
+      render json: {msg: "Player #{player.username} now has #{player.wins} wins!"}, status: :ok
+    end
+
     private
       # Use callbacks to share common setup or constraints between actions.
       def set_player
@@ -71,6 +93,15 @@ module Api::V1
       # Never trust parameters from the scary internet, only allow the white list through.
       def player_params
         params.require(:player).permit(:username, :wins)
+      end
+
+      # Never trust parameters from the scary internet, only allow the white list through.
+      def winner_params
+        params.permit(:player1, :player2, :move1, :move2)
+      end
+
+      def victory_params
+        params.permit(:username)
       end
   end
 end

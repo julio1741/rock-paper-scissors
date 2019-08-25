@@ -6,20 +6,35 @@ import * as serviceWorker from './serviceWorker';
 import AllRoutes from './components/AllRoutes';
 import { createStore } from 'redux'
 
-function game(state = [], action) {
+function game(state = {}, action) {
   switch (action.type) {
-    case 'ADD_TODO':
-      return state.concat([action.text])
+    case 'ADD_ROUND':
+    	
+      	return {
+      		...state,
+      		round:state.round + 1
+      	}
     default:
-      return state
+      	return state
   }
 }
 
-const store = createStore(game, ['Use Redux'])
+const store = createStore(game, {
+            player1: {
+            	name: "PlayerOne",
+            	wins: 0
+            },
+            player2: {
+            	name: "PlayerTwo",
+            	wins: 0
+            },
+            players: [],
+            round:1,
+            gameStarted:false
+        })
 
 store.dispatch({
-  type: 'ADD_TODO',
-  text: 'Read the docs'
+  type: 'ADD_ROUND'
 })
 
 
@@ -33,6 +48,5 @@ const renderApp = () => {
     ReactDOM.render(jsx, document.getElementById('root'));
 };
 renderApp();
-//ReactDOM.render(<App />, document.getElementById('root'));
 
 serviceWorker.unregister();

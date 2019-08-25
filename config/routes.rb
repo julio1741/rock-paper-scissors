@@ -60,4 +60,6 @@ Rails.application.routes.draw do
       resources :players
     end
   end
+  post "api/v1/winner" => "api/v1/players#winner"
+  post "api/v1/victory/:username" => "api/v1/players#victory"
 end
