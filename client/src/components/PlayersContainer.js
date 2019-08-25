@@ -2,11 +2,14 @@ import React, { Component } from 'react';
 import Player from './Player';
 import Round from './Round';
 import axios from 'axios';
-import { NavLink } from 'react-router-dom'
+import { NavLink, Redirect, withRouter } from 'react-router-dom'
 class PlayersContainer extends Component {
     constructor(props){
         super(props)
+        this.handleStartGame = this.handleStartGame.bind(this);
         this.state = {
+            player1: "Player one",
+            player2: "Player two",
             players: []
         }
     }
@@ -15,10 +18,15 @@ class PlayersContainer extends Component {
         .then(response => {
             console.log(response)
             this.setState({
+                
                 players: response.data
             })
         })
         .catch(error => console.log(error))
+    }
+    handleStartGame() {
+        //alert("Create Users")
+        //return <Redirect to = '/round' />
     }
     render() {
         return (
@@ -31,7 +39,7 @@ class PlayersContainer extends Component {
                     <input
                         type="text"
                         id="player1"
-                        placeholder="Player 1"
+                        placeholder={this.state.player1}
                         className="text-input"
                     />
                 </div>
@@ -40,12 +48,12 @@ class PlayersContainer extends Component {
                     <input
                         type="text"
                         id="player2"
-                        placeholder="Player 2"
+                        placeholder={this.state.player2}
                         className="text-input"
                     />
                 </div>
                 <div>
-                    <NavLink to="/round"> Start </NavLink>
+                    <NavLink to="/round"><div onClick={this.handleStartGame}>Start</div></NavLink>
                 </div>                
                 
                 {this.state.players.map( player => {
@@ -56,3 +64,4 @@ class PlayersContainer extends Component {
     }
 }
 export default PlayersContainer;
+//export default withRouter(PlayersContainer)
