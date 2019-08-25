@@ -17,4 +17,9 @@ module PlayersHelper
     end
     wins
   end
+
+  def get_posible_moves
+    moves = get_moves
+    moves.map{|m| m["move"] }
+  end
 end
