@@ -18,6 +18,7 @@ App desarrollada en Rails usada como api, y react como front.
 | Devuelve la cantidad de victorias para un username | **/api/v1/victory/:username** |
 
 Aunque quedan algunos features pendientes por realizar:
-    - Guardar en base de datos los jugadores
-    -  Agregar opcion para ver historico de jugadores y sus victorias
-    - Agregar estilos
+	
+	- Guardar en base de datos los jugadores
+	- Agregar opcion para ver historico de jugadores y sus victorias
+	- Agregar estilos
