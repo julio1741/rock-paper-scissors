@@ -29,7 +29,6 @@ class PlayersContainer extends Component {
     componentDidMount() {
         axios.get('/api/v1/players.json')
         .then(response => {
-            console.log(response)
             this.setState({
                 
                 players: response.data

@@ -65,8 +65,8 @@ module Api::V1
       end
     end
 
-    # GET /winner
-    # GET /winner.json
+    # GET /moves
+    # GET /moves.json
     def moves
       moves = get_posible_moves
       render json: {moves: moves}, status: :ok

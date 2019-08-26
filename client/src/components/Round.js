@@ -28,7 +28,6 @@ class Round extends React.Component {
     componentDidMount() {
         axios.get('/api/v1/moves')
         .then(response => {
-            console.log(response)
             this.setState({
               
                 moves: response.data.moves
@@ -69,8 +68,6 @@ class Round extends React.Component {
           if (player === 2) 
             this.setState({wins2: this.state.wins2 + 1});
 
-
-          console.log("player1 wins: "+this.state.wins1)
           if (this.state.wins1 >= 3 || this.state.wins2 >= 3) {
 
             this.props.history.push({
