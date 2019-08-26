@@ -2,6 +2,7 @@ module Api::V1
   class PlayersController < ApplicationController
     before_action :set_player, only: [:show, :edit, :update, :destroy]
     protect_from_forgery with: :null_session
+    skip_before_action :verify_authenticity_token
     include PlayersHelper
 
     # GET /players
@@ -79,7 +80,11 @@ module Api::V1
       move1 = winner_params["move1"]
       move2 = winner_params["move2"]
       winner = choose_winner player1, player2, move1, move2
-      render json: {winner: winner}, status: :ok
+      if winner == "no_winner"
+        render json: {winner: "no_winner"}, status: :ok
+      else
+        render json: {winner: winner, player: winner == player1 ? 1 : 2}, status: :ok
+      end
     end
 
     # POST /victory

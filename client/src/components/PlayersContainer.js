@@ -72,7 +72,11 @@ class PlayersContainer extends Component {
                     <Link
                       onClick={this.handleStartGame}
                       to={{
-                        pathname: '/round'
+                        pathname: '/round',
+                        state: { 
+                            player1:this.state.player1,
+                            player2: this.state.player2
+                          }
                       }}
                     >
                     Start
