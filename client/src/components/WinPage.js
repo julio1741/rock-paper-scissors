@@ -1,7 +1,20 @@
 import React from 'react';
-const WinPage = ({}) =>
-    <div className="single-player" >
-        <h1>WE HAVE A WINNER!</h1>
-        <p>Player1 is the new EMPEROR!</p>
-    </div>
+
+class WinPage extends React.Component {
+  	constructor(props) {
+	    super(props);   
+	    this.state = {
+	        winner: this.props.location.state.winner ? this.props.location.state.winner : 'Payer One',
+
+	    };
+	}
+  	render() {
+	    return (
+			<div className="single-player" >
+		        <h1>WE HAVE A WINNER!</h1>
+		        <p>{this.state.winner} is the new EMPEROR!</p>
+		    </div>
+	    )
+	}
+}
 export default WinPage;

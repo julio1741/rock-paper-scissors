@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import Player from './Player';
-import Round from './Round';
 import axios from 'axios';
-import { NavLink, Redirect, withRouter, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+
 class PlayersContainer extends Component {
     constructor(props){
         super(props)
@@ -49,7 +48,7 @@ class PlayersContainer extends Component {
                 Enter players name:
                 </div>
                 <div>
-                    <label for="player1">Player 1:</label>
+                    <label htmlFor="player1">Player 1:</label>
                     <input
                         type="text"
                         id="player1"
@@ -59,7 +58,7 @@ class PlayersContainer extends Component {
                     />
                 </div>
                 <div>
-                    <label for="player2">Player 2:</label>
+                    <label htmlFor="player2">Player 2:</label>
                     <input
                         type="text"
                         id="player2"
