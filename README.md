@@ -1,4 +1,4 @@
-== README
+# README
 
 App para Octano
 
@@ -13,9 +13,9 @@ App desarrollada en Rails usada como api, y react como front.
 
 | Descripción | Endpoint |
 | ------ | ------ |
-| Devuelve movimientos configurados en moves.json en la App rails | [/api/v1/moves][PlGh] |
-| Determina el ganador dado los parametros **player1, player2, move1, move2** | [/api/v1/winner][PlGh] |
-| Devuelve la cantidad de victorias para un username | [/api/v1/victory/:username][PlGh] |
+| Devuelve movimientos configurados en moves.json en la App rails | **/api/v1/moves** |
+| Determina el ganador dado los parametros **player1, player2, move1, move2** | **/api/v1/winner** |
+| Devuelve la cantidad de victorias para un username | **/api/v1/victory/:username** |
 
 Aunque quedan algunos features pendientes por realizar:
     - Guardar en base de datos los jugadores
